@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réparation</title>
+    <link rel="stylesheet" href="/public/styles.css"> <!-- Ensure the path is correct -->
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e4e4e4;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        /* Container Style */
+        .container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        /* Title Style */
+        h2 {
+            margin: 0;
+            padding: 0;
+            color: #2F4050;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th, td {
+            border: 1px solid #2F4050;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #2F4050;
+            font-weight: bold;
+        }
+
+        td {
+            background-color: #ffffff;
+        }
+
+        /* Button Styles */
+        .quit-button {
+            background-color: #2F4050;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px;
+            position: absolute;
+            top: 10px;
+            left: 1300px;
+        }
+
+        .quit-button:hover {
+            background-color: #b0cafa;
+        }
+
+        /* Add the 'Réviser' button style */
+        .revise-button {
+            background-color: #1AB394;
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 60px;
+            margin-left: 1320px;
+            position: absolute;
+            top: 10px;
+        }
+
+        .revise-button:hover {
+            background-color: #ffdd33;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Réparation</h2>
+        <table id="tableReparation">
+            <thead>
+                <tr>
+                    <th>Sélection</th>
+                    <th>ID Réclamation</th>
+                    <th>Projet</th>
+                    <th>Marché</th>
+                    <th>Équipement</th>
+                    <th>Type Équipement</th>
+                    <th>Référence</th>
+                    <th>Matriculation</th>
+                    <th>Statut</th>
+                    <th>Observation</th>
+                    <th>Actions</th> <!-- Add Actions column for buttons -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data rows will be dynamically inserted here -->
+            </tbody>
+        </table>
+
+        <button class="quit-button" onclick="navigateTo('navigation.html')">Retour</button>
+        <!-- No need to add this button; the action should be on each row -->
+        <!-- <button class="revise-button" onclick="reviseRow()">Réviser</button> -->
+
+        <script src="reparation.js"></script>
+    </div>
+</body>
+</html>

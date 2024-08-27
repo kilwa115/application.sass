@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter une Réclamation</title>
+    <link rel="stylesheet" href="/public/styles.css"> <!-- Ensure the path is correct -->
+</head>
+<body>
+    <div class="container">
+        <h2>Ajouter une Réclamation</h2>
+        <form id="formReclamation">
+            <div class="horizontal-form-group">
+                <label for="idReclamation">ID Réclamation</label>
+                <input type="text" id="idReclamation" name="idReclamation" readonly>
+            </div>
+            <div class="horizontal-form-group">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date">
+            </div>
+            <div class="horizontal-form-group">
+                <label for="projet">Projet</label>
+                <select id="projet" name="projet"></select>
+            </div>
+            <div class="horizontal-form-group">
+                <label for="marche">Marché</label>
+                <select id="marche" name="marche"></select>
+            </div>
+            <div class="horizontal-form-group">
+                <label for="equipement">Équipement</label>
+                <select id="equipement" name="equipement"></select>
+            </div>
+            <div class="horizontal-form-group">
+                <label for="typeEquipement">Type d'Équipement</label>
+                <select id="typeEquipement" name="typeEquipement"></select>
+            </div>
+            <div class="horizontal-form-group">
+                <label for="reference">Réference</label>
+                <select id="reference" name="reference"></select>
+            </div>
+            <div class="horizontal-form-group">
+                <label for="Matriculation">Matriculation</label>
+                <select id="Matriculation" name="Matriculation"></select>
+            </div>
+            <div class="horizontal-form-group">
+                <label for="observation">Observation</label>
+                <textarea id="observation" name="observation" rows="4" placeholder="Ajouter un commentaire"></textarea>
+            </div>
+            <div class="horizontal-form-group">
+                <label for="statut">Statut</label>
+                <input type="text" id="statut" name="statut" readonly>
+            </div>
+            <button type="submit">Enregistrer</button>
+        </form>
+
+        <!-- Quitter Button -->
+        <button type="button" onclick="window.location.href='navigation.html';" style="margin-top: 20px;">Retour</button>
+        
+        <script src="/public/Réclamation.js"></script> <!-- Ensure this path is correct -->
+    </div>
+</body>
+</html>

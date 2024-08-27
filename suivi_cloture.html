@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi Clôture</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e4e4e4;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        /* Container Style */
+        .container {
+            position: relative;
+            top: 20px;
+            left: 0px;
+        }
+
+        /* Title Style */
+        h1 {
+            margin: 0;
+            padding: 0;
+            color: #2F4050;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+        th, td {
+            border: 1px solid #2F4050;
+            padding: 7px;
+            text-align: left;
+        }
+        th {
+            background-color: #2F4050;
+            color: #ffffff;
+        }
+        td {
+            background-color: #ffffff;
+        }
+        /* Styles for the search bar */
+        #searchInput {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 200px;
+            margin-left: 1270px;
+            
+        }
+
+        /* Button Styles */
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .form-actions button {
+            background-color: #2F4050;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        .form-actions button:hover {
+            background-color: #1d2a38;
+        }
+
+        /* Specific Styles for 'Retour' Button */
+        .quit-button {
+            background-color: #2F4050;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px;
+        }
+
+        .quit-button:hover {
+            background-color: #1d2a38;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Suivi Clôture - Résolu</h1>
+            <input type="text" id="searchInput" placeholder="Rechercher...">
+        </div>
+        <table id="tableSuiviCloture">
+            <thead>
+                <tr>
+                    <th>ID Réclamation</th>
+                    <th>Projet</th>
+                    <th>Marché</th>
+                    <th>Équipement</th>
+                    <th>Type Équipement</th>
+                    <th>Référence</th>
+                    <th>Matriculation</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be dynamically inserted here -->
+            </tbody>
+        </table>
+        <div class="form-actions">
+            <button class="quit-button" onclick="goBack()">Retour</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tableBody = document.querySelector('#tableSuiviCloture tbody');
+            const resoluRows = JSON.parse(localStorage.getItem('reclamations_resolu')) || [];
+            
+            console.log('Filtered Résolu Rows:', resoluRows); // Debugging line
+            
+            if (resoluRows.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="8">Aucune réclamation Résolu trouvée.</td></tr>';
+                return;
+            }
+            
+            resoluRows.forEach(reclamation => {
+                const row = document.createElement('tr');
+                row.classList.add('status-resolu');
+                
+                row.innerHTML = `
+                    <td>${reclamation.idReclamation}</td>
+                    <td>${reclamation.projet}</td>
+                    <td>${reclamation.marche}</td>
+                    <td>${reclamation.equipement}</td>
+                    <td>${reclamation.typeEquipement}</td>
+                    <td>${reclamation.reference}</td>
+                    <td>${reclamation.matriculation}</td>
+                    <td>${reclamation.notes}</td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+        });
+
+        // Search Functionality
+        document.getElementById('searchInput').addEventListener('keyup', function () {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#tableSuiviCloture tbody tr');
+
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                let match = false;
+                cells.forEach(cell => {
+                    if (cell.textContent.toLowerCase().includes(searchValue)) {
+                        match = true;
+                    }
+                });
+                row.style.display = match ? '' : 'none';
+            });
+        });
+
+        function goBack() {
+            window.location.href = 'navigation.html'; // Redirect to your navigation page
+        }
+    </script>
+</body>
+</html>

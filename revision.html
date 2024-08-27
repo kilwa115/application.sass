@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Révision</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e4e4e4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+        }
+
+        h2 {
+            margin: 100;
+            padding: 100;
+            color: #2F4050;
+        }
+
+        /* Flexbox Layout for the Form */
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .form-group input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: flex-end;
+        }
+
+        .form-actions button {
+            background-color: #2F4050;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-actions button:hover {
+            background-color: #1d2a38;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Révision des anomalies</h2>
+        </div>
+        <div class="form-container">
+            <form id="formRevision">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="idReclamation">ID Réclamation</label>
+                        <input type="text" id="idReclamation" name="idReclamation" readonly>
+                    </div>
+                        <label for="projet">Projet:</label>
+                        <input type="text" id="projet" name="projet" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="marche">Marché:</label>
+                        <input type="text" id="marche" name="marche" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="equipement">Équipement:</label>
+                        <input type="text" id="equipement" name="equipement" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="type-equipement">Type Équipement:</label>
+                        <input type="text" id="type-equipement" name="type-equipement" readonly>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="reference">Référence:</label>
+                        <input type="text" id="reference" name="reference" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="matriculation">Matriculation:</label>
+                        <input type="text" id="matriculation" name="matriculation" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="statut">Statut:</label>
+                        <input type="text" id="statut" name="statut" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="observation">Observation:</label>
+                        <textarea id="observation" name="observation" rows="4" readonly></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><input type="checkbox" id="en-cours" name="en-cours"> En cours</label>
+                    </div>
+                    <div class="form-group">
+                        <label><input type="checkbox" id="resolu" name="resolu"> Résolu</label>
+                    </div>
+                    <div class="form-group" style="flex: 1 1 100%;">
+                        <label for="notes">Notes:</label>
+                        <textarea id="notes" name="notes" rows="4"></textarea>
+                    </div>
+                </div>
+            </form>
+
+            <div class="form-actions">
+                <button type="button" id="enregistrer">Enregistrer</button>
+                <button type="button" onclick="window.location.href='navigation.html';">Retour</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve data from localStorage
+            const revisionData = JSON.parse(localStorage.getItem('revisionData')) || {};
+
+            // Debugging: Check if data is loaded correctly
+            console.log('Loaded revisionData:', revisionData);
+
+            // Populate form fields with data
+            document.getElementById('idReclamation').value = revisionData.IDreclamation || ''; // Ensure the key matches what was stored
+            document.getElementById('projet').value = revisionData.projet || '';
+            document.getElementById('marche').value = revisionData.marche || '';
+            document.getElementById('equipement').value = revisionData.equipement || '';
+            document.getElementById('type-equipement').value = revisionData.typeEquipement || '';
+            document.getElementById('reference').value = revisionData.reference || '';
+            document.getElementById('matriculation').value = revisionData.matriculation || '';
+            document.getElementById('statut').value = revisionData.statut || '';
+            document.getElementById('observation').value = revisionData.observation || '';
+
+            // Set checkboxes if data exists
+            document.getElementById('en-cours').checked = revisionData.statut === 'En cours';
+            document.getElementById('resolu').checked = revisionData.statut === 'Résolu';
+        });
+
+        document.getElementById("enregistrer").addEventListener("click", function () {
+            // Collect data from form fields
+            const formData = {
+                idReclamation: document.getElementById("idReclamation").value,
+                projet: document.getElementById("projet").value,
+                marche: document.getElementById("marche").value,
+                equipement: document.getElementById("equipement").value,
+                typeEquipement: document.getElementById("type-equipement").value,
+                reference: document.getElementById("reference").value,
+                matriculation: document.getElementById("matriculation").value,
+                statut: document.getElementById("statut").value,
+                observation: document.getElementById("observation").value,
+                enCours: document.getElementById("en-cours").checked,
+                resolu: document.getElementById("resolu").checked,
+                notes: document.getElementById("notes").value,
+            };
+
+            // Save form data to localStorage
+            let savedData = JSON.parse(localStorage.getItem("savedRevisions")) || [];
+            savedData.push(formData);
+            localStorage.setItem("savedRevisions", JSON.stringify(savedData));
+            
+            // Redirect to Liste.html
+            window.location.href = "Liste.html";
+        });
+    </script>
+</body>
+</html>

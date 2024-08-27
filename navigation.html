@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="nav-container">
+        <div class="sidebar">
+            <button onclick="toggleMenu('suiviReclamationsMenu')">Suivi Réclamations</button>
+            <div id="suiviReclamationsMenu" class="menu" style="display: none;">
+                <button onclick="navigateTo('Reclamation.html')">Ajouter une réclamation</button>
+                <button onclick="navigateTo('Table.html')">Liste</button>
+            </div>
+
+            <button onclick="toggleMenu('suiviReparationsMenu')">Suivi Réparations</button>
+            <div id="suiviReparationsMenu" class="menu" style="display: none;">
+                <button onclick="navigateTo('Réparation.html')">Réparer</button>
+                <button onclick="navigateTo('Liste.html')">Liste</button>
+            </div>
+
+            <button onclick="navigateTo('suivi_cloture.html')">Suivi Cloture</button>
+        </div>
+        <div class="content">
+            <!-- Content related to navigation will go here -->
+        </div>
+    </div>
+
+    <!-- Options Button and Menu -->
+    <div class="options-container">
+        <button class="options-button" onclick="toggleOptionsMenu()">Options</button>
+        <div id="optionsMenu" class="options-menu">
+            <button onclick="navigateTo('index.html')">Déconnexion</button>
+            <button onclick="clearLocalStorage()">Base de données</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu(menuId) {
+            const menu = document.getElementById(menuId);
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        function toggleOptionsMenu() {
+            const menu = document.getElementById('optionsMenu');
+            menu.style.display = menu.style.display === 'none' || menu.style.display === '' ? 'block' : 'none';
+        }
+
+        function clearLocalStorage() {
+            const password = prompt("Please enter the password to reset all data:");
+            const correctPassword = "admin123";  // Replace with your actual password
+
+            if (password === correctPassword) {
+                if (confirm("Are you sure you want to reset all data? This action cannot be undone.")) {
+                    localStorage.clear();
+                    alert("All data has been reset.");
+                    location.reload();
+                }
+            } else {
+                alert("Incorrect password. Access denied.");
+            }
+        }
+    </script>
+</body>
+</html>

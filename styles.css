@@ -1,0 +1,292 @@
+/* Font Face for SAA Series A Standard D */
+@font-face {
+    font-family: 'SAA Series A Standard D';
+    src: url('/path/to/fonts/SAA_Series_A_Standard_D.woff2') format('woff2'),
+         url('/path/to/fonts/SAA_Series_A_Standard_D.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* General Body Styles */
+body {
+    font-family: 'SAA Series A Standard D', Arial, sans-serif;
+    background-color: #e4e4e4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Navigation Container */
+.nav-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+/* Logo Style */
+.logo {
+    width: 200px;
+}
+
+/* Heading Styles */
+h2 {
+    font-family: 'SAA Series A Standard D', Arial, sans-serif;
+    margin-bottom: 20px;
+}
+
+/* Input Group and Form Group Styles */
+.input-group, .form-group {
+    margin-bottom: 20px;
+}
+
+.input-group label, .form-group label {
+    font-family: 'SAA Series A Standard D', Arial, sans-serif;
+    display: block;
+    font-weight: bold;
+}
+
+.input-group input, .form-group input, .form-group select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+}
+
+/* Button Styles */
+button {
+    font-family: 'SAA Series A Standard D', Arial, sans-serif;
+    background-color: #2F4050;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #b0cafa;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    font-family: 'SAA Series A Standard D', Arial, sans-serif;
+    width: 250px;
+    background-color: #c6c6c6;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    height: 30vh; /* Full height to center vertically */
+}
+
+.sidebar button {
+    background-color: #2F4050; /* Semi-dark blue for main buttons */
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 100%; /* Make buttons full width */
+}
+
+.sidebar .menu button {
+    background-color: #c1d2ea; /* Light blue for sub-buttons */
+    color: #2F4050;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 90%; /* Sub-buttons are slightly smaller */
+    margin-left: 5%; /* Center the sub-buttons */
+}
+
+.sidebar button:hover {
+    background-color: #adcff6;
+}
+
+/* Form Styles */
+#formReclamation {
+    font-family: 'SAA Series A Standard D', Arial, sans-serif;
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    gap: 20px; /* Space between columns */
+}
+
+.horizontal-form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.horizontal-form-group label {
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.horizontal-form-group input,
+.horizontal-form-group select,
+.horizontal-form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+}
+
+/* Styles for the Options Button and Dropdown Menu */
+.options-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.options-button {
+    background-color: #2F4050;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.options-button:hover {
+    background-color: #3a4a5c;
+}
+
+.options-menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #ffffff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    z-index: 1;
+}
+
+.options-menu button {
+    background-color: #ffffff;
+    color: #2F4050;
+    padding: 10px 15px;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.options-menu button:hover {
+    background-color: #f1f1f1;
+}
+
+
+
+/* Table Styles */
+table {
+    font-family: 'SAA Series A Standard D', Arial, sans-serif;
+    width: 75%; /* Adjust width to your preference */
+    border-collapse: collapse;
+    margin-top: 30px;
+    position: absolute;
+    top: 5px; /* Top margin */
+    left: 10px; /* Left margin */
+}
+
+th, td {
+    border: 1px solid #dadada; /* Adds border to table cells */
+    padding: 10px; /* Adds padding to table cells */
+    text-align: left;
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+th {
+    background-color: #ffffff;
+    font-weight: bold;
+}
+
+td {
+    background-color: #ffffff;
+}
+/* Highlight Style */
+.highlight {
+    background-color: rgb(0, 255, 47); /* or another color to highlight the row */
+}
+
+/* Table Head Styles */
+thead {
+    background-color: #2F4050;
+    color: #ffffff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+/* Form Actions Styles */
+#formrevision {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.form-actions button {
+    font-family: 'SAA Series A Standard D', Arial, sans-serif;
+    background-color: #2F4050;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-actions button:hover {
+    background-color: #b0cafa;
+}
+
+/* Checkbox Styles */
+.form-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+/* Text Area for Notes */
+#notes {
+    font-family: 'SAA Series A Standard D', Arial, sans-serif;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}

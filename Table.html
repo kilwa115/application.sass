@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e4e4e4;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        /* Container Style */
+        .container {
+            position: relative;
+            top: 20px;
+            left: 0px;
+        }
+
+        /* Header Style */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        /* Title Style */
+        h1 {
+            margin: 0;
+            padding: 0;
+            color: #2F4050;
+            margin-left: 50px;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th, td {
+            border: 1px solid #2F4050;
+            padding: 7px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #2F4050;
+            color: #ffffff;
+        }
+
+        td {
+            background-color: #ffffff;
+        }
+
+        /* Button Styles */
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .form-actions button {
+            background-color: #2F4050;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        .form-actions button:hover {
+            background-color: #1d2a38;
+        }
+
+        /* Styles for the search bar */
+        #searchInput {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 200px;
+            margin-right: 50px;
+        }
+
+        /* Specific Styles for 'Retour' Button */
+        .quit-button,
+        .reclamation-button {
+            background-color: #2F4050;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px;
+        }
+
+        .quit-button:hover,
+        .reclamation-button:hover {
+            background-color: #1d2a38;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Liste</h2>
+            <input type="text" id="searchInput" placeholder="Rechercher...">
+        </div>
+        <table id="tableListe">
+            <thead>
+                <tr>
+                    <th>ID Réclamation</th>
+                    <th>Date</th>
+                    <th>Projet</th>
+                    <th>Marché</th>
+                    <th>Équipement</th>
+                    <th>Type d'Équipement</th>
+                    <th>Référence</th>
+                    <th>Matriculation</th>
+                    <th>Statut</th>
+                    <th>Observation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be inserted here -->
+            </tbody>
+        </table>
+        <div class="form-actions">
+            <button class="quit-button" onclick="goBack()">Retour</button>
+            <button class="reclamation-button" onclick="goToReclamation()">Ajouter</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tableBody = document.querySelector('#tableListe tbody');
+
+            // Retrieve data from localStorage
+            const reclamations = JSON.parse(localStorage.getItem('reclamations')) || [];
+
+            // Populate table with data and apply specific class based on "Statut"
+            reclamations.forEach(reclamation => {
+                const row = document.createElement('tr');
+
+                // Determine the class based on "Statut"
+                let statusClass = '';
+                if (reclamation.statut === 'OUI') {
+                    // Example logic: Change "OUI" to "En cours" or "Résolu"
+                    if (true) { // Adjust this condition to your logic
+                        reclamation.statut = 'En cours';
+                        statusClass = 'status-en-cours';
+                    } else {
+                        reclamation.statut = 'Résolu';
+                        statusClass = 'status-resolu';
+                    }
+                } else if (reclamation.statut === 'En cours') {
+                    statusClass = 'status-en-cours';
+                } else if (reclamation.statut === 'Résolu') {
+                    statusClass = 'status-resolu';
+                }
+
+                // Only add class if it is not empty
+                if (statusClass) {
+                    row.classList.add(statusClass);
+                }
+
+                // Create cells and populate them
+                Object.values(reclamation).forEach((value, index) => {
+                    const cell = document.createElement('td');
+                    cell.textContent = value;
+
+                    // Ensure the correct status is displayed
+                    if (index === 8) { // Assuming "Statut" is the 9th column
+                        cell.textContent = reclamation.statut;
+                    }
+
+                    row.appendChild(cell);
+                });
+
+                tableBody.appendChild(row);
+            });
+        });
+
+        // Search Functionality
+        document.getElementById('searchInput').addEventListener('keyup', function () {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#tableListe tbody tr');
+
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                let match = false;
+                cells.forEach(cell => {
+                    if (cell.textContent.toLowerCase().includes(searchValue)) {
+                        match = true;
+                    }
+                });
+                row.style.display = match ? '' : 'none';
+            });
+        });
+
+        function goBack() {
+            window.location.href = 'navigation.html'; // Redirect to your navigation page
+        }
+
+        function goToReclamation() {
+            window.location.href = 'Reclamation.html'; // Redirect to Reclamation page
+        }
+    </script>
+</body>
+
+</html>
